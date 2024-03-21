@@ -1,0 +1,40 @@
+/* Posture Corrector by CircuitsLibrary
+Components Used : Arduino Uno, Flex Sensor, LED, 5V Buzzer
+Connections: LED and buzzer is coonected to pin 8  and sensor is connected to pin A0 of arduino.
+*/
+int sensorPin = A0;    // select the input pin for the Flex Sensor
+int ledPin = 8;      // Pin For LED
+int Buzzer = 8;      // select the pin for the Buzzer     
+int sensorValue = 0;  // variable to store the value coming from the sensor
+
+void setup() {
+// Initialization of serial port
+Serial.begin(9600);  
+  // declare the LED and Buzzer pins as OUTPUT:
+  pinMode(ledPin, OUTPUT);
+  pinMode(Buzzer, OUTPUT);
+ // Initially LED and Buzzer both are off 
+  digitalWrite(ledPin, LOW);
+  digitalWrite(Buzzer, LOW);
+}
+
+void loop() {
+  // read the value from the sensor:
+  sensorValue = analogRead(sensorPin);
+// Print sensor value on serial monitor
+  Serial.println(sensorValue);  
+ // This value may change according to application.
+  if (sensorValue >200) 
+  {
+    // turn the ledPin and buzzer on
+  digitalWrite(ledPin, HIGH);
+  digitalWrite(Buzzer, HIGH);
+  }
+  else
+  {
+    // turn the ledPin and buzzer off
+    digitalWrite(ledPin, LOW);
+    digitalWrite(Buzzer, LOW);
+    }
+  
+}
